@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Department;
-use App\Doctor;
-use App\Http\Requests\Doctor\CreateDoctorRequest;
-use App\Http\Requests\Doctor\UpdateDoctorRequest;
+use App\Employee;
+use App\Http\Requests\Employee\CreateEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\TimeSchedule;
 use App\User;
 use Illuminate\Http\Request;
@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Storage;
 class DoctorController extends Controller
 {
 
-    public function getTimeScheduleByDoctor(Request $request){
+    public function getTimeScheduleByEmployee(Request $request){
 
         if(!$request->id){
-            $html = '<li class="tm"  value="">No Time Schedule For This Doctor</li>';
+            $html = '<li class="tm"  value="">No Time Schedule For This Employee</li>';
         }else{
             $html = '';
-            $doctor = User::find($request->id);
-            $timeSchedules = $doctor->timeSchedules;
+            $employee = User::find($request->id);
+            $timeSchedules = $employee->timeSchedules;
             foreach ($timeSchedules as $timeSchedule) {
                 $html .= '<li class="tm list-group-item" value="'.$timeSchedule->id.'"><span class="icon icon-clock-o icon-lg icon-fw">'.$timeSchedule->week_day.'</li>';
             }
@@ -30,13 +30,13 @@ class DoctorController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function getDayoffScheduleByDoctor(Request $request){
+    public function getDayoffScheduleByEmployee(Request $request){
 
         if(!$request->id){
-            $html = '<li class="tm"  value="">No Day Off Schedule For This Doctor</li>';
+            $html = '<li class="tm"  value="">No Day Off Schedule For This Employee</li>';
         }else{
             $doctor = User::find($request->id);
-            $dayoffSchedules = $doctor->dayoffSchedules;
+            $dayoffSchedules = $employee->dayoffSchedules;
             $TS = collect();
             foreach ($dayoffSchedules as $dayoffSchedule) {
                     $TS->push($dayoffSchedule);
@@ -46,26 +46,26 @@ class DoctorController extends Controller
         return response()->json(['html' => $json]);
     }
 
-    public function treatmentHistory(User $doctor)
+    public function treatmentHistory(User $employee)
     {
-        return view('appointments.list')->with('appointments', $doctor->appointments);
+        return view('appointments.list')->with('appointments', $employee->appointments);
     }
 
     public function index()
     {
-        return view('users.doctors.list')->with('doctors', User::doctor()->get())->with('departments',Department::all());
+        return view('users.employee.list')->with('doctors', User::demployee()->get())->with('departments',Department::all());
     }
 
 
     public function create()
     {
-        return view('users.doctors.create')->with('departments',Department::all());
+        return view('users.employee.create')->with('departments',Department::all());
     }
 
-    public function store(CreateDoctorRequest $request)
+    public function store(CreateEmployeeRequest $request)
     {
 
-        $doctor = User::create([
+        $employee = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'national_id' => $request->national_id,
@@ -81,69 +81,69 @@ class DoctorController extends Controller
             'specialist' => $request->specialist,
             'biography' => $request->biography,
             'educational_qualification' => $request->educational_qualification,
-            'type' => 'doctor',
+            'type' => 'employee',
         ]);
 
         if($request->picture){
-            $pic = $request->picture->store('doctors_pictures');
-            $doctor->picture = $pic;
-            $doctor->save();
+            $pic = $request->picture->store('employee_pictures');
+            $employee->picture = $pic;
+            $employee->save();
         }
 
         if ($request->departments){
-            $doctor->departments()->attach($request->departments);
+            $employee->departments()->attach($request->departments);
         }
         // flash message
-        session()->flash('success', 'New Doctor Added Successfully.');
+        session()->flash('success', 'New Employee Added Successfully.');
         // redirect user
-        return redirect(route('doctors.index'));
+        return redirect(route('employee.index'));
     }
 
 
-    public function show(User $doctor)
+    public function show(User $employee)
     {
-        return view('users.doctors.show')->with('doctor', $doctor)->with('departments',Department::all());
+        return view('users.employee.show')->with('employee', $employee)->with('departments',Department::all());
     }
 
-    public function edit(User $doctor)
+    public function edit(User $employee)
     {
-        return view('users.doctors.create')->with('doctor', $doctor)->with('departments',Department::all());
+        return view('users.employee.create')->with('employee', $employee)->with('departments',Department::all());
     }
 
 
-    public function update(UpdateDoctorRequest $request,User $doctor)
+    public function update(UpdateEmployeeRequest $request,User $employee)
     {
         $data = $request->only('first_name','last_name','national_id', 'email', 'address', 'birth_date', 'gender', 'phone', 'mobile', 'emergency', 'medical_degree', 'specialist', 'biography', 'educational_qualification');
         if ($request->hasFile('picture')) {
 
-            $pic = $request->picture->store('doctors_pictures');
+            $pic = $request->picture->store('employee_pictures');
 
-            Storage::delete($doctor->picture);
+            Storage::delete($employee->picture);
 
             $data['picture'] = $pic;
         }
 
         if ($request->departments) {
-            $doctor->departments()->sync($request->departments);
+            $employee->departments()->sync($request->departments);
         }
 
-        $doctor->update($data);
+        $employee->update($data);
         // flash message
-        session()->flash('success', 'Doctor Info Updated Successfully.');
+        session()->flash('success', 'Employee Info Updated Successfully.');
         // redirect user
-        return redirect(route('doctors.index'));
+        return redirect(route('employee.index'));
     }
 
-    public function destroy(User $doctor)
+    public function destroy(User $employee)
     {
-        $doctor->departments()->detach();
+        $employee->departments()->detach();
        
-        Storage::delete($doctor->picture);
-        $doctor->delete();
+        Storage::delete($employee->picture);
+        $employee->delete();
         // flash message
-        session()->flash('success', 'Doctor Deleted Successfully.');
+        session()->flash('success', 'Employee Deleted Successfully.');
         // redirect user
-        return redirect(route('doctors.index'));
+        return redirect(route('employee.index'));
     }
 
 }

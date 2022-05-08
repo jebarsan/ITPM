@@ -52,7 +52,7 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
-        $department->doctors()->detach();
+        $department->employee()->detach();
         $department->delete();
         // flash message
         session()->flash('success', ' Department Deleted Successfully.');

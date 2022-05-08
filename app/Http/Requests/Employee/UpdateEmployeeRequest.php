@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Doctor;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateDoctorRequest extends FormRequest
+class UpdateEmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CreateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'unique:users,email,NULL,id,type,doctor'
+            //
         ];
     }
 }

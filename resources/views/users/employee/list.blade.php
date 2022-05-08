@@ -81,22 +81,22 @@
                         </thead>
 
                         <tbody>
-                        @foreach($doctors as $doctor)
+                        @foreach($employee as employee)
                             <tr>
                                 <td>
-                                    @if(strpos($doctor->picture,'users_pictures')!==false)
-                                        <img src="{{asset('storage/'.$doctor->picture)}}" width="50px"
+                                    @if(strpos($employee->picture,'users_pictures')!==false)
+                                        <img src="{{asset('storage/'.$employee->picture)}}" width="50px"
                                              height="50px">
                                     @else
-                                        <img src="{{$doctor->picture}}" width="50px" height="50px">
+                                        <img src="{{$employee->picture}}" width="50px" height="50px">
                                     @endif
                                 </td>
-                                <td>{{$doctor->first_name}} {{$doctor->last_name}}</td>
-                                <td>{{$doctor->national_id}}</td>
-                                <td>{{$doctor->email}}</td>
-                                <td>{{$doctor->mobile}}</td>
+                                <td>{{$employee->first_name}} {{$employee->last_name}}</td>
+                                <td>{{$employee->national_id}}</td>
+                                <td>{{$employee->email}}</td>
+                                <td>{{$employee->mobile}}</td>
                                 <td>
-                                    @foreach($doctor->departments as $de)
+                                    @foreach($employee->departments as $de)
                                         <span
                                             class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">{{$de->name}}</span>
                                     @endforeach
@@ -107,9 +107,9 @@
                                        <i class="la la-ellipsis-h"></i>
                                     </a>
                                     
-                                        <a class="dropdown-item" href="{{route('doctors.edit',$doctor->id)}}"><i
+                                        <a class="dropdown-item" href="{{route('employee.edit',$employee->id)}}"><i
                                                 class="fa fa-edit"></i>Edit Details</a>
-                                        <a href="{{route('doctors.show',$doctor->id)}}" class="dropdown-item"><i
+                                        <a href="{{route('employee.show',$employee->id)}}" class="dropdown-item"><i
                                                 class="la la-eye"></i>View</a>
                                     
                                      </span>
@@ -117,7 +117,7 @@
                                 </td>
                         
                                 <td>
-                                    <form action="{{route('doctors.destroy',$doctor->id)}}" method="post">
+                                    <form action="{{route('employee.destroy',$employee->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-clean btn-icon btn-icon-md"><i

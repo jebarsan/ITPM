@@ -13,7 +13,7 @@
             <div class="kt-container  kt-container--fluid ">
                 <div class="kt-subheader__main">
 
-                    <h3 class="kt-subheader__title">{{isset($doctor) ? 'Edit Employee Info' : 'Add Employee'}}</h3>
+                    <h3 class="kt-subheader__title">{{isset($employee) ? 'Edit Employee Info' : 'Add Employee'}}</h3>
 
                     <span class="kt-subheader__separator kt-subheader__separator--v"></span>
 
@@ -128,7 +128,7 @@
                         </div>
                         <!--begin::Form-->
                         <form class="kt-form kt-form--label-right"
-                              action="{{isset($doctor) ? route('doctors.update',$doctor->id) : route('doctors.store')}}"
+                              action="{{isset($employeer) ? route('employee.update',$employee->id) : route('employee.store')}}"
                               method="POST"
                               enctype="multipart/form-data">
                             <div class="kt-portlet__body">
@@ -141,14 +141,14 @@
                                     </div>
                                 </div>
                                 @csrf
-                                @if(isset($doctor))
+                                @if(isset($employee))
                                     @method('PUT')
                                 @endif
                                 <div class="form-group">
                                     <label>Image</label>
                                     <div>
                                         <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
-                                            <div class="kt-avatar__holder" @if(isset($doctor)) @if(strpos($doctor->picture,'users_pictures')!==false) style="background-image: url({{asset('storage/'.$doctor->picture)}})" @else style="background-image: url({{$doctor->picture}})" @endif  @else style="background-image: url({{asset('storage/nopic.jpg')}});" @endif>
+                                            <div class="kt-avatar__holder" @if(isset($employee)) @if(strpos($employee->picture,'users_pictures')!==false) style="background-image: url({{asset('storage/'.$employee->picture)}})" @else style="background-image: url({{$employee->picture}})" @endif  @else style="background-image: url({{asset('storage/nopic.jpg')}});" @endif>
 
                                             </div>
                                             <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change Image">
@@ -166,7 +166,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon2-user"></i></span></div>
                                         <input id="first_name" class="form-control" type="text" name="first_name"
-                                               value="{{isset($doctor) ? $doctor->first_name : ''}}">
+                                               value="{{isset($employee) ? $employee->first_name : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -174,7 +174,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon2-user"></i></span></div>
                                         <input id="last_name" class="form-control" type="text" name="last_name"
-                                               value="{{isset($doctor) ? $doctor->last_name : ''}}">
+                                               value="{{isset($employee) ? $employee->last_name : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -183,7 +183,7 @@
                                         <div class="input-group-prepend"><span class="input-group-text"><i
                                                     class="fa fa-address-card"></i></span></div>
                                         <input id="national_id" class="form-control" type="text" name="national_id"
-                                               value="{{isset($doctor) ? $doctor->national_id : ''}}">
+                                               value="{{isset($employee) ? $employee->national_id : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -192,7 +192,7 @@
                                         <div class="input-group-prepend"><span class="input-group-text"><i
                                                     class="flaticon2-map"></i></span></div>
                                         <textarea class="form-control" name="address" id="address" cols="30"
-                                                  rows="3">{{isset($doctor) ? $doctor->address : ''}}</textarea>
+                                                  rows="3">{{isset($employee) ? $employee->address : ''}}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -200,10 +200,10 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">@</span></div>
                                         <input id="email" class="form-control" type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                                               value="{{isset($doctor) ? $doctor->email : ''}}">
+                                               value="{{isset($employee) ? $employee->email : ''}}">
                                     </div>
                                 </div>
-                                @if(!isset($doctor))
+                                @if(!isset($employeer))
                                     <div class="form-group">
                                         <label>Password</label>
                                         <div class="input-group">
@@ -217,7 +217,7 @@
                                     <div class="input-group date">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
                                         <input type="text" class="form-control" readonly="" name="birth_date" id="date"
-                                               value="{{isset($doctor) ? $doctor->birth_date : ''}}">
+                                               value="{{isset($employee) ? $employee->birth_date : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -227,15 +227,15 @@
                                         <select class="form-control" name="gender" id="gender">
                                             <option>Select Gender</option>
                                             <option
-                                                value="male" @if(isset($doctor)) {{$doctor->gender == 'male' ? 'selected' : ''}} @endif>
+                                                value="male" @if(isset($employee)) {{$employee->gender == 'male' ? 'selected' : ''}} @endif>
                                                 Male
                                             </option>
                                             <option
-                                                value="female" @if(isset($doctor)) {{$doctor->gender == 'female' ? 'selected' : ''}} @endif>
+                                                value="female" @if(isset($employee)) {{$employee->gender == 'female' ? 'selected' : ''}} @endif>
                                                 Female
                                             </option>
                                             <option
-                                                value="other" @if(isset($doctor)) {{$doctor->gender == 'other' ? 'selected' : ''}} @endif>
+                                                value="other" @if(isset($employee)) {{$employee->gender == 'other' ? 'selected' : ''}} @endif>
                                                 Other
                                             </option>
                                         </select>
@@ -246,7 +246,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-piggy-bank"></i></span></div>
                                         <input id="phone" class="form-control" type="number" name="phone"
-                                               value="{{isset($doctor) ? $doctor->phone : ''}}">
+                                               value="{{isset($employee) ? $employee->phone : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -254,7 +254,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-mobile"></i></span></div>
                                         <input id="mobile" class="form-control" type="number" name="mobile"
-                                               value="{{isset($doctor) ? $doctor->mobile : ''}}">
+                                               value="{{isset($employee) ? $employee->mobile : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -262,7 +262,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-medal"></i></span></div>
                                         <input id="emergency" class="form-control" type="number" name="emergency"
-                                               value="{{isset($doctor) ? $doctor->emergency : ''}}">
+                                               value="{{isset($employee) ? $employee->emergency : ''}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -271,7 +271,7 @@
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-h-square"></i></span></div>
                                         <select id="kt_select2_3" class="kt-select2 form-control" name="departments[]" id="departments" multiple>
                                             @foreach($departments as $department)
-                                                <option value="{{$department->id}}" @if(isset($doctor)) {{$doctor->hasDepartment($department->id) ? 'selected' : ''}} @endif>
+                                                <option value="{{$department->id}}" @if(isset($employee)) {{$employee->hasDepartment($department->id) ? 'selected' : ''}} @endif>
                                                     {{$department->name}}
                                                 </option>
                                             @endforeach
@@ -283,7 +283,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="flaticon-star"></i></span></div>
                                         <textarea class="form-control" name="medical_degree" id="medical_degree"
-                                                   rows="1">{{isset($doctor) ? $doctor->medical_degree : ''}}</textarea>
+                                                   rows="1">{{isset($employee) ? $employee->medical_degree : ''}}</textarea>
                                     </div>
                               
                                
@@ -292,7 +292,7 @@
                                 </div>
                                 <div class="kt-portlet__foot">
                                     <div class="kt-form__actions">
-                                        <input type="submit" value="{{isset($doctor) ? 'Update' : 'Submit'}}"
+                                        <input type="submit" value="{{isset($employee) ? 'Update' : 'Submit'}}"
                                                class="btn-lg btn-primary">
                                         <input type="reset" class="btn-lg btn-danger" value="Cancel">
                                     </div>

@@ -7,7 +7,7 @@
             <div class="kt-container  kt-container--fluid ">
                 <div class="kt-subheader__main">
 
-                    <h3 class="kt-subheader__title">Employee / {{$doctor->first_name}} {{$doctor->last_name}}</h3>
+                    <h3 class="kt-subheader__title">Employee / {{$employee->first_name}} {{$employee->last_name}}</h3>
 
                     <span class="kt-subheader__separator kt-subheader__separator--v"></span>
 
@@ -174,26 +174,26 @@
                             <div class="kt-widget kt-widget--user-profile-2">
                                 <div class="kt-widget__head">
                                     <div class="kt-widget__media">
-                                        @if(strpos($doctor->picture,'doctors_pictures')!==false)
-                                            <img src="{{asset('storage/'.$doctor->picture)}}" class="img-circle kt-widget__img">
+                                        @if(strpos($employee->picture,'employee_pictures')!==false)
+                                            <img src="{{asset('storage/'.$employee->picture)}}" class="img-circle kt-widget__img">
                                         @else
-                                            <img src="{{$doctor->picture}}" class="img-circle kt-widget__img">
+                                            <img src="{{$employee->picture}}" class="img-circle kt-widget__img">
                                         @endif
 
                                     </div>
                                     <div class="kt-widget__info">
                                         <a href="#" class="kt-widget__username">
-                                            {{$doctor->first_name}} {{$doctor->last_name}}
+                                            {{$employee->first_name}} {{$employee->last_name}}
                                         </a>
                                         <span class="kt-widget__desc">
-                                            {{$doctor->national_id}}
+                                            {{$employee->national_id}}
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="kt-widget__body">
                                     <div class="kt-widget__section">
-                                        {{$doctor->biography}}
+                                        {{$employee->biography}}
                                     </div>
 
                                     <div class="kt-widget__content">
@@ -222,19 +222,19 @@
                                     <div class="kt-widget__item">
                                         <div class="kt-widget__contact">
                                             <span class="kt-widget__label">Email:</span>
-                                            <a href="#" class="kt-widget__data">{{$doctor->email}}</a>
+                                            <a href="#" class="kt-widget__data">{{$employee->email}}</a>
                                         </div>
                                         <div class="kt-widget__contact">
                                             <span class="kt-widget__label">Mobile:</span>
-                                            <a href="#" class="kt-widget__data">{{$doctor->mobile}}</a>
+                                            <a href="#" class="kt-widget__data">{{$employee->mobile}}</a>
                                         </div>
                                         <div class="kt-widget__contact">
                                             <span class="kt-widget__label">Gender:</span>
-                                            <span class="kt-widget__data">{{$doctor->gender}}</span>
+                                            <span class="kt-widget__data">{{$employee->gender}}</span>
                                         </div>
                                         <div class="kt-widget__contact">
                                             <span class="kt-widget__label">Birth Date:</span>
-                                            <span class="kt-widget__data">{{$doctor->birth_date}}</span>
+                                            <span class="kt-widget__data">{{$employee->birth_date}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +269,7 @@
                                                 <div class="kt-widget1__item">
                                                     <div class="kt-widget1__info">
                                                         <h3 class="kt-widget1__title">Department</h3>
-                                                        @foreach($doctor->departments as $de)
+                                                        @foreach($employee->departments as $de)
                                                             <span
                                                                 class="kt-badge kt-badge--brand kt-badge--inline kt-badge--pill">{{$de->name}}</span>
                                                         @endforeach
@@ -279,21 +279,21 @@
                                                 <div class="kt-widget1__item">
                                                     <div class="kt-widget1__info">
                                                         <h3 class="kt-widget1__title">Salary (LKR)</h3>
-                                                        <span class="kt-widget1__desc">{{$doctor->phone}}</span>
+                                                        <span class="kt-widget1__desc">{{$employee->phone}}</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="kt-widget1__item">
                                                     <div class="kt-widget1__info">
                                                         <h3 class="kt-widget1__title">Experiance (Years)</h3>
-                                                        <span class="kt-widget1__desc">{{$doctor->emergency}}</span>
+                                                        <span class="kt-widget1__desc">{{$employee->emergency}}</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="kt-widget1__item">
                                                     <div class="kt-widget1__info">
                                                         <h3 class="kt-widget1__title">Address</h3>
-                                                        <span class="kt-widget1__desc">{{$doctor->address}}</span>
+                                                        <span class="kt-widget1__desc">{{$employee->address}}</span>
                                                     </div>
                                                 </div>
 
@@ -305,7 +305,7 @@
                                                 <div class="kt-widget1__item">
                                                     <div class="kt-widget1__info">
                                                         <h3 class="kt-widget1__title">Position</h3>
-                                                        <span class="kt-widget1__desc">{{$doctor->medical_degree}}</span>
+                                                        <span class="kt-widget1__desc">{{$employee->medical_degree}}</span>
                                                     </div>
                                                 </div>
 

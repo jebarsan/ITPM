@@ -51,7 +51,7 @@ class ServiceController extends Controller
             'department_id' => $request->department,
             'name' => $request->name,
             'charge' => $request->charge,
-            'doctor_commission' => $request->commission,
+            'employee_commission' => $request->commission,
         ]);
 
         // flash message
