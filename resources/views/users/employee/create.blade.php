@@ -213,7 +213,7 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
-                                    <label>Birth Date</label>
+                                    <label>Date Of Birth</label>
                                     <div class="input-group date">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
                                         <input type="text" class="form-control" readonly="" name="birth_date" id="date"
