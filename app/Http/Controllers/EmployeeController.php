@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class DoctorController extends Controller
+class EmployeeController extends Controller
 {
 
     public function getTimeScheduleByEmployee(Request $request){
