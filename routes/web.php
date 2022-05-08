@@ -37,13 +37,13 @@ Route::resource('/paymentitems', 'PaymentItemController');
 Route::resource('/expenses', 'ExpenseController');
 
 
-Route::get('/getdoctorsbydepartment/', 'AppointmentController@getDoctorsByDepartment')->name('get-doctors-by-department');
-Route::get('/gettimeschedulebydoctor/', 'EmployeeController@getTimeScheduleByEmployee')->name('get-time-schedule-by-employee');
-Route::get('/getdayoffschedulebydoctor/', 'EmployeeController@getDayoffScheduleByEmployee')->name('get-dayoff-schedule-by-employee');
+Route::get('/getemployeebydepartment/', 'AppointmentController@getEmployeeByDepartment')->name('get-employee-by-department');
+Route::get('/gettimeschedulebyemployee/', 'EmployeeController@getTimeScheduleByEmployee')->name('get-time-schedule-by-employee');
+Route::get('/getdayoffschedulebyemployee/', 'EmployeeController@getDayoffScheduleByEmployee')->name('get-dayoff-schedule-by-employee');
 Route::get('/gettimebytimeschedule/', 'TimeScheduleController@getTimeByTimeSchedule')->name('get-time-by-time-schedule');
 Route::get('/getappointmentsbydate/', 'AppointmentController@getAppointmentsByDate')->name('get-appointments-by-date');
 Route::get('/getbedallotmentsbydate/', 'BedAllotmentController@getBedAllotmentsByDate')->name('get-bedallotments-by-date');
 Route::get('/gettemplatebyid/', 'ReportController@getTemplateById')->name('get-template-by-id');
 Route::get('/getpaymentitembyitemid/', 'PaymentItemController@getPaymentItemByItemId')->name('get-payment-item-by-item-id');
-Route::get('/getpaymentitembydoctorid/', 'PaymentItemController@getPaymentItemByDoctorId')->name('get-payment-item-by-doctor_id');
+Route::get('/getpaymentitembyemployeeid/', 'PaymentItemController@getPaymentItemByEmployeeId')->name('get-payment-item-by-Employee_id');
 Route::get('/getuserbyusertype/', 'PublicController@getUserByUserType')->name('get-user-by-user-type');
